@@ -4,14 +4,13 @@ import { makeStyles } from "@mui/styles";
 import { List, ListItemText, ListItemButton, Grid } from "@mui/material";
 import { useDisconnect } from "wagmi";
 import { Link } from "react-router-dom";
-import { useEtherum } from "components/hooks/useEtherum";
-const SideMenu = (props) => {
+
+const SideMenu = () => {
   const { disconnect } = useDisconnect();
-  const [selectedMenu, setSelectedMenu] = useState(0);
+  const [selectedMenu, setSelectedMenu] = useState(1);
 
   const useStyles = makeStyles((theme) => ({
     aside: {
-      /* width: `${drawerWidth}`, */
       width: "280px",
       background: "#fff",
       paddingLeft: "2em",
@@ -20,12 +19,8 @@ const SideMenu = (props) => {
       minHeight: "100vh",
       height: "100%",
       position: "fixed",
-      overflowY: "hidden",
+      overflow: "hidden",
       zIndex: theme.zIndex.appBar + 1,
-
-      "&:hover": {
-        overflowY: "hidden",
-      },
 
       "& .MuiListItemButton-root": {
         display: "flex",
@@ -38,17 +33,8 @@ const SideMenu = (props) => {
         "&:hover": {
           background: theme.palette.common.lightBlue,
 
-          "& .MuiSvgIcon-root": {
-            stroke: "#3E5EA9",
-            fill: "transparent",
-          },
-
           "& .MuiTypography-root": {
-            color: theme.palette.common.blue,
-          },
-
-          "& .message-icon": {
-            color: theme.palette.common.blue,
+            color: "#0e0e4e",
           },
         },
       },
@@ -59,24 +45,11 @@ const SideMenu = (props) => {
         minWidth: 22,
       },
 
-      "& .MuiSvgIcon-root": {
-        fontSize: "2rem",
-        stroke: "#8D9091",
-        fill: "transparent",
-
-        "&:hover": {
-          /* color: "#3E5EA9", */
-          stroke: "#3E5EA9",
-          fill: "transparent",
-        },
-      },
-
       "& .MuiTypography-root": {
-        fontStyle: "normal",
         fontWeight: 400,
-        fontSize: "14px",
+        fontSize: "2rem",
         lineHeight: "20px",
-        color: "#474951",
+        color: "#0e0e4e",
       },
 
       "& .MuiListItemButton-root.Mui-selected": {
@@ -97,8 +70,8 @@ const SideMenu = (props) => {
         },
 
         "& .MuiTypography-root": {
-          color: theme.palette.common.red,
-          fontWeight: 500,
+          color: "#0e0e4e",
+          fontWeight: 600,
         },
       },
 
@@ -131,8 +104,7 @@ const SideMenu = (props) => {
     },
   }));
   const classes = useStyles();
-  const { account } = useEtherum();
-  console.log(account);
+
   const menu = [
     {
       name: "Home",
@@ -163,7 +135,7 @@ const SideMenu = (props) => {
         borderRight: "1px solid rgba(229, 229, 229, 0.5)",
       }}
     >
-      <List sx={{ height: "100%" }}>
+      <List sx={{ height: "100%", pt: 5 }}>
         {menu.map((menu) => {
           return (
             <ListItemButton
@@ -174,7 +146,7 @@ const SideMenu = (props) => {
               component={Link}
               to={`/dashboard${menu.href}`}
             >
-              <ListItemText>{menu.name}</ListItemText>
+              <ListItemText sx={{ fontSize: "4rem" }}>{menu.name}</ListItemText>
             </ListItemButton>
           );
         })}
@@ -186,7 +158,6 @@ const SideMenu = (props) => {
           }}
           selected={selectedMenu === 5}
         >
-          {" "}
           <ListItemText>{"Logout"}</ListItemText>
         </ListItemButton>
       </List>

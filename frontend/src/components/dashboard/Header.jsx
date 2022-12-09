@@ -39,7 +39,15 @@ const Header = () => {
         Welcome {""} {shortAccount(address)}
       </h1>
       <Button
-        sx={{ background: "#fff", p: 2, "&:hover": { background: "#fff" } }}
+        sx={{
+          background: "#fff",
+          p: 2,
+          minWidth: "10rem",
+          borderRadius: "3rem",
+          fontSize: "1.2rem",
+          fontWeight: 600,
+          "&:hover": { background: "#fff" },
+        }}
         component={Link}
         to="/"
       >
