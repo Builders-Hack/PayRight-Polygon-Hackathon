@@ -174,8 +174,7 @@ export const CustomSelect = (props) => {
     onBlur,
     placeholder,
     label,
-    onClickClearBtn,
-    hasClearBtn,
+
     disabled = false,
     defaultValue,
     variant = "small",

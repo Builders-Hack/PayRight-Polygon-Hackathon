@@ -2,10 +2,26 @@ import { shortAccount } from "components/helpers";
 import { Grid, Button, Typography } from "@mui/material";
 import { useEtherum } from "components/hooks/useEtherum";
 import { useEffect, useState } from "react";
-const Header = ({ logout, state }) => {
-  const { account, contract } = useEtherum();
+import { Link } from "react-router-dom";
+const Header = () => {
+  const [state, setState] = useState("");
+  const { address, contract } = useEtherum();
   const [total, setTotal] = useState(0);
 
+  const getEmployeeDetails = async () => {
+    try {
+      if (address) {
+        const data = await contract?.getEmployeeDetails(address);
+        setState(data);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  useEffect(() => {
+    getEmployeeDetails();
+    //eslint-disable-next-line
+  }, []);
   useEffect(() => {
     const fetchData = async () => {
       const data = await contract?.totalRegisteredEmployee();
@@ -16,30 +32,46 @@ const Header = ({ logout, state }) => {
     fetchData();
     //eslint-disable-next-line
   }, []);
-  const ac2 = "0x774B716ee5176f7f4eE429F62F688e0AC2e6d504";
 
   return (
     <Grid item container justifyContent="space-between" alignItems="center">
       <h1>
-        Welcome {""} {shortAccount(account)}
+        Welcome {""} {shortAccount(address)}
       </h1>
-      <Button sx={{ background: "#fff" }} onClick={logout}>
-        Logout
+      <Button
+        sx={{
+          background: "#fff",
+          p: 2,
+          minWidth: "10rem",
+          borderRadius: "3rem",
+          fontSize: "1.2rem",
+          fontWeight: 600,
+          "&:hover": { background: "#fff" },
+        }}
+        component={Link}
+        to="/"
+      >
+        Home
       </Button>
       <Typography
         sx={{
           fontSize: "2rem",
         }}
       >
-        {account !== ac2 ? "Approval Status" : "Total Employees"}
+        {"Approval Status"}
         {"   "} -{" "}
         <span style={{ color: state?.approved === true ? "green" : "red" }}>
-          {account !== ac2
-            ? state?.approved === true
-              ? "Approved"
-              : "Not Approved"
-            : total}
+          {state?.approved === true ? "Approved" : "Not Approved"}
         </span>
+      </Typography>
+      <Typography
+        sx={{
+          fontSize: "2rem",
+        }}
+      >
+        {"Total Employees"}
+        {"   "} -{" "}
+        <span style={{ color: total > 0 ? "green" : "red" }}>{total}</span>
       </Typography>
     </Grid>
   );

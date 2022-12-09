@@ -15,7 +15,7 @@ const LoginPage = () => {
   const { account } = useEtherum();
   const location = useLocation();
   const navigate = useNavigate();
-  const from = location?.state?.from.pathname || "/dashboard";
+  const from = location?.state?.from.pathname || "/dashboard/home";
 
   const validationSchema = Yup.object({
     email: Yup.string("Enter Employee's Email address")

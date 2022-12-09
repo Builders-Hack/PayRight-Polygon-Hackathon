@@ -7,8 +7,8 @@ import {
   ListItemText,
 } from "@mui/material";
 import { Link } from "react-router-dom";
-import { shortAccount } from "components/helpers";
-import Copy from "components/utilities/Copy";
+import { useAccount } from "wagmi";
+import { ConnectionButton } from "components/utilities/ConnectButton";
 const pages = [
   {
     title: "Register",
@@ -16,16 +16,25 @@ const pages = [
   },
   {
     title: "Login",
-    route: "/login",
+    route: "/dashboard/home",
   },
 ];
 
-function Navbar({ handleConnect, contract, account }) {
+function Navbar() {
+  const { isConnected } = useAccount();
   return (
     <AppBar
       position="static"
       component="nav"
-      sx={{ background: "inherit", height: "80px", justifyContent: "center" }}
+      elevation={5}
+      sx={{
+        background: "inherit",
+        px: 4,
+        height: "80px",
+        justifyContent: "center",
+
+        borderBottom: "1px solid rgba(255,255,255,.3)",
+      }}
     >
       <Container>
         <Toolbar disableGutters>
@@ -59,9 +68,11 @@ function Navbar({ handleConnect, contract, account }) {
                 component={Link}
                 to="/about"
               >
-                <ListItemText sx={{ color: "#fff" }}>About</ListItemText>
+                <ListItemText sx={{ color: "#fff", fontSize: "2rem" }}>
+                  About
+                </ListItemText>
               </ListItemButton>
-              {contract &&
+              {isConnected &&
                 pages.map((page) => (
                   <ListItemButton
                     disableRipple
@@ -69,25 +80,22 @@ function Navbar({ handleConnect, contract, account }) {
                     key={page.route}
                     component={Link}
                     to={page.route}
-                    onClick={() => {
-                      if (page.route === "/login") {
-                        localStorage.setItem("auth", true);
-                      }
-                    }}
-                    //   selected={selectedMenu === page.route}
                   >
                     <ListItemText>{page.title}</ListItemText>
                   </ListItemButton>
                 ))}
               <ListItemButton
                 disableRipple
-                sx={{ flexGrow: 0, padding: "2em", borderRadius: "2rem" }}
-                onClick={() => handleConnect()}
+                sx={{
+                  flexGrow: 0,
+                  background: "#fff",
+                  borderRadius: "40rem",
+                  "&:hover": {
+                    background: "#fff",
+                  },
+                }}
               >
-                <ListItemText sx={{ color: "#fff" }}>
-                  {account ? shortAccount(account) : "connect Wallet"}
-                </ListItemText>
-                {account && <Copy text={account} name="Wallet ID Copied" />}
+                <ConnectionButton />
               </ListItemButton>
             </List>
           </Grid>

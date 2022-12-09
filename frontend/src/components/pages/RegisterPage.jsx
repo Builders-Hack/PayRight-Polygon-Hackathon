@@ -12,7 +12,7 @@ const RegisterPage = () => {
   const { contract, account } = useEtherum();
   const location = useLocation();
   const navigate = useNavigate();
-  const from = location?.state?.from.pathname || "/dashboard";
+  const from = location?.state?.from.pathname || "/dashboard/home";
   const { setAuth } = useAuth();
   const { displayAlert } = useAlert();
   const buttonType = {
@@ -157,7 +157,7 @@ const RegisterPage = () => {
                       </Grid>
                       <Typography textAlign="center" variant="h4">
                         Already have an account click{" "}
-                        <Typography component={Link} to="/login">
+                        <Typography component={Link} to="/dashboard">
                           here
                         </Typography>
                       </Typography>

@@ -3,13 +3,11 @@ body {
   font-size: 62.5%;
   font-family: sans-serif;
   scroll-behavior: smooth;
-  width: 100%;
   min-height: 100%;
+  background: #0e0e4e !important;
 }
 
 .App {
   height: 100%;
-  background: rgba(0, 0, 0, 0.7);
   color: #fff;
-  min-height: 100vh;
 }

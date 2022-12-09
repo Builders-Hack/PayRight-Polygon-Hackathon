@@ -1,12 +1,11 @@
 import "./App.css";
+import "@rainbow-me/rainbowkit/styles.css";
 import { muiTheme } from "components/muiTheme";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
-import { LandingPage, RegisterPage, LoginPage } from "components/pages";
+import { LandingPage, RegisterPage } from "components/pages";
 import { PrivateRoute } from "components/Routes";
 import { ThemeProvider } from "@mui/material/styles";
-import DashboardRoute from "components/Routes/dasboardRoute";
 import Dash from "components/pages/Dash";
-import RegisterRoute from "components/Routes/RegisterRoute";
 
 const App = () => {
   return (
@@ -18,24 +17,16 @@ const App = () => {
             <Route
               path="/dashboard/*"
               element={
-                <DashboardRoute>
+                <PrivateRoute>
                   <Dash />
-                </DashboardRoute>
+                </PrivateRoute>
               }
             />
             <Route
               path="/register"
               element={
-                <RegisterRoute>
-                  <RegisterPage />
-                </RegisterRoute>
-              }
-            />
-            <Route
-              path="/login"
-              element={
                 <PrivateRoute>
-                  <LoginPage />
+                  <RegisterPage />
                 </PrivateRoute>
               }
             />
