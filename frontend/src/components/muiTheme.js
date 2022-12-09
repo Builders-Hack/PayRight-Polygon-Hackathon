@@ -85,7 +85,7 @@ export const muiTheme = createTheme({
     },
 
     body1: {
-      fontSize: "1.6rem",
+      fontSize: "2rem",
       fontWeight: 500,
       lineHeight: 1.7,
       color: "#fff",
@@ -166,8 +166,8 @@ export const muiTheme = createTheme({
     MuiAppBar: {
       styleOverrides: {
         root: {
-          background: "#fff",
-          boxShadow: "-1px 0px 10px -2px rgba(0,0,0,0.15)",
+          background: "inherit",
+          boxShadow: "-1px 0px 10px -2px rgba(255,255,255,0.15)",
         },
       },
     },
@@ -176,6 +176,14 @@ export const muiTheme = createTheme({
         badge: {
           top: "-.9rem",
           background: "#FF0000",
+        },
+      },
+    },
+    MuiListItemButton: {
+      styleOverrides: {
+        root: {
+          fontSize: "8.4rem",
+          color: "red",
         },
       },
     },

@@ -58,96 +58,92 @@ const AddInvoice = ({ props }) => {
           validateOnBlur={false}
           enableReinitialize
         >
-          {({ isSubmitting }) => {
-            return (
-              <Form style={{ marginTop: "1rem", width: "100%" }}>
-                <Grid container direction="column">
-                  <Grid item container gap={2}>
-                    <Grid item container flexWrap="nowrap" gap={2}>
-                      <Grid item xs={6}>
-                        <FormikControl
-                          control="input"
-                          disabled
-                          label="Name"
-                          id="name"
-                          name="name"
-                          placeholder="Enter your name"
-                        />
-                      </Grid>
-                      <Grid item xs={6}>
-                        <FormikControl
-                          control="input"
-                          disabled
-                          label="Post"
-                          id="post"
-                          name="post"
-                          placeholder="Enter Post"
-                        />
-                      </Grid>
-                    </Grid>
-                    <Grid item container flexWrap="nowrap" gap={2}>
-                      <Grid item xs={6}>
-                        <FormikControl
-                          control="input"
-                          label=" Amount"
-                          id="amount"
-                          name="amount"
-                          placeholder="Enter Amount"
-                        />
-                      </Grid>
-                      <Grid item xs={6}>
-                        <FormikControl
-                          control="select"
-                          name="level"
-                          disabled
-                          label="Level"
-                          options={[
-                            {
-                              key: "Junior",
-                              value: 0,
-                            },
-                            {
-                              key: "Intermediate",
-                              value: 1,
-                            },
-                            {
-                              key: "Senior",
-                              value: 2,
-                            },
-                          ]}
-                        />
-                      </Grid>
-                    </Grid>
-
-                    <Grid item container>
-                      <FormikControl
-                        control="textarea"
-                        name="description"
-                        minRows={3}
-                        label="Description"
-                        placeholder="Enter description"
-                      />
-                    </Grid>
+          <Form style={{ marginTop: "1rem", width: "100%" }}>
+            <Grid container direction="column">
+              <Grid item container gap={2}>
+                <Grid item container flexWrap="nowrap" gap={2}>
+                  <Grid item xs={6}>
+                    <FormikControl
+                      control="input"
+                      disabled
+                      label="Name"
+                      id="name"
+                      name="name"
+                      placeholder="Enter your name"
+                    />
                   </Grid>
-                  <Grid item container sx={{ mt: 2 }}>
-                    {/* <Button
+                  <Grid item xs={6}>
+                    <FormikControl
+                      control="input"
+                      disabled
+                      label="Post"
+                      id="post"
+                      name="post"
+                      placeholder="Enter Post"
+                    />
+                  </Grid>
+                </Grid>
+                <Grid item container flexWrap="nowrap" gap={2}>
+                  <Grid item xs={6}>
+                    <FormikControl
+                      control="input"
+                      label=" Amount"
+                      id="amount"
+                      name="amount"
+                      placeholder="Enter Amount"
+                    />
+                  </Grid>
+                  <Grid item xs={6}>
+                    <FormikControl
+                      control="select"
+                      name="level"
+                      disabled
+                      label="Level"
+                      options={[
+                        {
+                          key: "Junior",
+                          value: 0,
+                        },
+                        {
+                          key: "Intermediate",
+                          value: 1,
+                        },
+                        {
+                          key: "Senior",
+                          value: 2,
+                        },
+                      ]}
+                    />
+                  </Grid>
+                </Grid>
+
+                <Grid item container>
+                  <FormikControl
+                    control="textarea"
+                    name="description"
+                    minRows={3}
+                    label="Description"
+                    placeholder="Enter description"
+                  />
+                </Grid>
+              </Grid>
+              <Grid item container sx={{ mt: 2 }}>
+                {/* <Button
                     type="submit"
                     disabled={isSubmitting}
                     sx={{ background: "blue", color: "white", width: "100%" }}
                   >
                     Add
                   </Button> */}
-                    <CustomButton
-                      type={buttonType}
-                      title="Add"
-                      width="20rem"
-                      textColor={"#fff"}
-                    />
-                  </Grid>
-                </Grid>
-              </Form>
-            );
-          }}
+                <CustomButton
+                  type={buttonType}
+                  title="Add"
+                  width="20rem"
+                  textColor={"#fff"}
+                />
+              </Grid>
+            </Grid>
+          </Form>
         </Formik>
       </Paper>
     </Grid>

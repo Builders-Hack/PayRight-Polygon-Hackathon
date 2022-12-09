@@ -1,27 +1,11 @@
 import { useLocation, Navigate } from "react-router-dom";
-import { useAuth } from "components/context";
+import { useAccount } from "wagmi";
 const PrivateRoute = ({ children }) => {
-  let { auth } = useAuth();
+  let { isConnected } = useAccount();
   let location = useLocation();
-  // const { displayAlert } = useAlert();
-
-  // const { contract, account,  } = useEtherum();
-
-  // const getEmployeeDetails = async () => {
-  //   try {
-  //     if (account) {
-  //       const data = await contract.getEmployeeDetails(account);
-  //     }
-  //   } catch (error) {
-  //     displayAlert("error", error);
-  //   }
-  // };
-  // useEffect(() => {
-  //   getEmployeeDetails(account);
-  //   //eslint-disable-next-line
-  // }, [auth]);
-  if (auth) {
-    return <Navigate to="/dashboard" state={{ from: location }} replace />;
+  console.log(isConnected);
+  if (!isConnected) {
+    return <Navigate to="/" state={{ from: location }} replace />;
   }
 
   return children;

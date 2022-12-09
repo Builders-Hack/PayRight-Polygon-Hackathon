@@ -9,7 +9,7 @@ const MainRoutes = (props) => {
   return (
     // <BrowserRouter>
     <Routes>
-      <Route path="/" element={<Home props={props} />} />
+      <Route path="/home" element={<Home props={props} />} />
       <Route path="/add" element={<AddInvoice props={props} />} />
       <Route path="/withdraw" element={<Withdraw props={props} />} />
       <Route path="/deposit" element={<Deposit props={props} />} />
