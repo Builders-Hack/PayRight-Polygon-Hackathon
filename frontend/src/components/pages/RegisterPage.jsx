@@ -6,14 +6,14 @@ import { FormikControl } from "components/validation";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAlert from "components/hooks/useAlert";
 import { useEtherum } from "components/hooks/useEtherum";
-import { useAuth } from "components/context";
 import { CustomButton } from "components/utilities";
 const RegisterPage = () => {
-  const { contract, account } = useEtherum();
+  const { contract, address } = useEtherum();
+
   const location = useLocation();
   const navigate = useNavigate();
   const from = location?.state?.from.pathname || "/dashboard/home";
-  const { setAuth } = useAuth();
+
   const { displayAlert } = useAlert();
   const buttonType = {
     background: "#3E5EA9",
@@ -23,7 +23,7 @@ const RegisterPage = () => {
   const initialValues = {
     name: "",
     post: "",
-    level: 0,
+    level: "",
   };
 
   const validationSchema = Yup.object({
@@ -36,28 +36,19 @@ const RegisterPage = () => {
     level: Yup.string("Enter Employee's level")
       .trim()
       .required("Level  is required"),
-    // address: Yup.string("Enter Employee's Address")
-    //   .trim()
-    //   .required("Address  is required"),
-    // email: Yup.string("Enter Employee's Email address")
-    //   .email("Enter a valid email")
-    //   .trim()
-    //   .required("Email is required"),
   });
 
   const handleSubmit = async (values, onSubmitProps) => {
     try {
       const { name, post, level } = values;
 
-      await contract.registerInfo(name, account, post, level);
+      await contract?.registerInfo(name, address, post, level);
 
       displayAlert("success", "Registration successful");
-      localStorage.setItem("auth", true);
-      setAuth(true);
       navigate(from, { replace: true });
     } catch (err) {
       console.log(err);
-      displayAlert("error", err.data.message || err.message);
+      displayAlert("error", err?.data?.message || err?.message);
     }
     onSubmitProps.resetForm();
   };
@@ -125,6 +116,10 @@ const RegisterPage = () => {
                             name="level"
                             options={[
                               {
+                                key: "Select Level",
+                                value: "",
+                              },
+                              {
                                 key: "Junior",
                                 value: 0,
                               },
@@ -151,13 +146,18 @@ const RegisterPage = () => {
                         <CustomButton
                           type={buttonType}
                           title="Add"
+                          disabled={isSubmitting}
                           width="20rem"
                           textColor={"#fff"}
                         />
                       </Grid>
                       <Typography textAlign="center" variant="h4">
                         Already have an account click{" "}
-                        <Typography component={Link} to="/dashboard">
+                        <Typography
+                          component={Link}
+                          sx={{ color: "#0e0e4e" }}
+                          to="/dashboard"
+                        >
                           here
                         </Typography>
                       </Typography>

@@ -18,17 +18,17 @@ const Header = () => {
       console.error(error);
     }
   };
-  useEffect(() => {
-    getEmployeeDetails();
-    //eslint-disable-next-line
-  }, []);
-  useEffect(() => {
-    const fetchData = async () => {
+  const fetchData = async () => {
+    if (address) {
       const data = await contract?.totalRegisteredEmployee();
+      console.log(data);
       if (data) {
         setTotal(data?.toNumber());
       }
-    };
+    }
+  };
+  useEffect(() => {
+    getEmployeeDetails();
     fetchData();
     //eslint-disable-next-line
   }, []);

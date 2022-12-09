@@ -28,7 +28,6 @@ const useStyles = makeStyles((theme) => ({
 
 const Form = ({ label, ...props }) => {
   const [field] = useField(props);
-  console.log(props);
   return <FormControlLabel {...field} control={<Checkbox />} label={label} />;
 };
 Form.propTypes = {

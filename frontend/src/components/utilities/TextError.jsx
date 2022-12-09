@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 const useStyles = makeStyles((theme) => ({
   color: {
-    color: theme.palette.common.danger,
+    color: "red",
     fontSize: "1.2rem",
   },
 }));
