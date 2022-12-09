@@ -13,10 +13,10 @@ const Withdraw = () => {
     hover: "#3E5EA9",
     active: "#3E5EA9",
   };
-  const { contract, account } = useEtherum();
+  const { contract, address } = useEtherum();
   const handleSubmit = async (values, onSubmitProps) => {
     try {
-      await contract.withdraw(account);
+      await contract.withdraw(address);
       displayAlert("success", "withdraw successful");
     } catch (err) {
       console.log(err);

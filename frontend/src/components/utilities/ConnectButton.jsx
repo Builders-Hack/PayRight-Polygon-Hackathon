@@ -25,7 +25,7 @@ export const ConnectionButton = () => {
             sx={{
               background: "#fff",
               height: "120%",
-              fontSize: "2rem",
+              fontSize: "1.6rem",
               borderRadius: "10%",
               width: "100%",
               minWidth: "15rem",
